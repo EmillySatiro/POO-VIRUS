@@ -11,7 +11,7 @@ class Jogador:
         # usuario vai selecionar o pokemon que irar jogar 
         print(" Pokémons disponivéis: ")
         for p in pokemon.Lista_pokemon:
-             print(f"\t\n=========================\n ID: {p['ID']}\t\nNome: {p['Nome']}\t\n Tipo: {p['Tipo']}\t\n HP:{p['Hp']}\t\n Dano minimo: {p['Dano']}\t\n=========================\n")
+            print(f"\t\n=========================\n ID: {p['ID']}\t\nNome: {p['Nome']}\t\nTipo: {p['Tipo']}\t\nHP: {p['Hp']}\t\nDano mínimo: {p['Dano']}\t\n=========================\n")
       
     def escolher_pokemon(self):
         self.Listar_pokemon_usuario()
@@ -23,7 +23,7 @@ class Jogador:
                 
                 escolhido = int(escolhido)
                 self.pokemon_atual = next(p for p in pokemon.Lista_pokemon if p["ID"] == escolhido)
-                print(f'Você escolheu: {self. pokemon_atual['Nome']}')
+                print(f'Você escolheu: {self.pokemon_atual["Nome"]}')
                 break
             except ValueError as e:
                 print(f"Entrada invalida:{e} !!!")
@@ -36,7 +36,7 @@ class Jogador:
             return
         dano = self.pokemon_atual['Dano'] *randint (1,3)
         rival['Hp'] -= dano
-        print(f'{self.pokemon_atual["Nome"]} causou {dano} em {rival["Nome"]}!')
+        print(f'{self.pokemon_atual["Nome"]} causou {dano} de dano em {rival["Nome"]}!')
         if rival['Hp']<=0:
             print(f"{rival['Nome']} Foi derrotado!")
             return True
@@ -52,16 +52,22 @@ class Jogo:
             if not rival:
                 print("Não há mais oponentes disponíveis!")
                 break
-            print(f'Você está emfrentando:{ rival['Nome']}')
-            combate = Round.Round()
-            combate.Perdeu_XP(rival)
-            if self.jogador.atacar(rival):
-                print("você venceu a batalha!!")
-                continue
+            input(f"Você está enfrentando: {rival['Nome']}. Pressione Enter para continuar...")
             
-            if self.jogador.pokemon_atual['Hp']<= 0:
-                print(f"{self.jogador.pokemon_atual['Nome']} foi derrotado!")
-                break
+            combate = Round.Round(self.jogador, rival)
+            
+            while True:
+                if combate.perdeu_XP():# pokemon do usuario morreu durante o combate 
+                    combate.perdeu()
+                    return
 
+                if combate.atacou():
+                    combate.ganhou()
+                    break
+                
+                if self.jogador.pokemon_atual['Hp'] <= 0:# pokemon do usuario morreu ao final do combate 
+                    combate.perdeu()
+                    return
+               
 jogo = Jogo()
 jogo.iniciar()

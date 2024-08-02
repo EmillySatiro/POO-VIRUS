@@ -1,7 +1,8 @@
 from random import randint
 
 Lista_pokemon = [
-    {"ID": 1,"Nome": " Bulbasaur", "Tipo": "Planta, poison", "Hp":100,"Dano":15 },
+    {"ID": 1,"Nome": " Lugia", "Tipo": "Psíquico, Flting", "Hp":100,"Dano":35 },
+    {"ID": 2,"Nome": " Bulbasaur", "Tipo": "Planta, poison", "Hp":100,"Dano":15 },
     {"ID": 3,"Nome": " Ivysaur", "Tipo": "Planta, poison","Hp":100,"Dano":25 },
     {"ID": 4,"Nome": " Venusaur", "Tipo": "Planta, poison","Hp":100,"Dano":35},
     {"ID": 5,"Nome": " Charmander", "Tipo": "Fogo","Hp":100,"Dano":20},
@@ -36,7 +37,7 @@ lista_pokemons_emfrentados = []
 # Função para escolher o pokemon para o combate 
 
 def Oponente():
-    sorteado = randint(1,30)
+    sorteado = randint(1, len(Lista_pokemon))
     oponente = next((p for p in Lista_pokemon if p["ID"] == sorteado), None)
     if oponente:
         lista_pokemons_emfrentados.append(oponente)

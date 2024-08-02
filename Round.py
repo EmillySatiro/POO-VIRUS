@@ -1,28 +1,28 @@
 from abc import ABC, abstractmethod
 from random import randint
 import pokemon
+
+
 class Combate(ABC):
     @abstractmethod
-    def Perdeu_XP(self, rival):
+    def perdeu_XP(self, rival):
         '''
         Dano do pokemon é um numero random de 1 a 10 x a sua força 
         Quando o jogador receber o dano do pokemon ele irar ter
         uma perde de xp equivaente a o dano do oponente 
         '''
         pass
-
+    
     @abstractmethod
-    def Atacou(self):
+    def atacou(self):
         '''
-        Dano do jogador é um numero random de 1 a 10 x a sua força 
-        
-        Quando o jogador atacar aqui o pokemon
-        perde xp equivalente a o dano do jogador 
+        Quando jogador ataca, o pokémon rival perde hp equivalente ao dano do jogador 
         '''
         pass
 
+
     @abstractmethod
-    def Ganhou(self):
+    def ganhou(self):
         '''
         No Final da partida o jogador tem sua bonificação 
         caso tenha ganhado ele sobe 1 nivel e ganha + 20 xp e 5 de força 
@@ -31,41 +31,55 @@ class Combate(ABC):
         pass
     
     @abstractmethod
-    def Perdeu(self):
+    def perdeu(self):
         '''
-        No final o jogdor perdeu a partida então 
-        ele só recupera sua vida e mantem a força que ja tinha não sobe de level
+        fim de jogo 
         '''
         pass
 
 
 class Round(Combate):
-    def __init__(self):
-        self.rival = pokemon.Oponente()
+    def __init__(self, jogador, rival):
+        self.jogador = jogador
+        self.rival = rival
         
-    def Perdeu_XP(self, rival):
-        print(" antes do dano ",rival)
-        dano = rival['Dano'] * randint(1,3)
-        rival["Hp"] -=dano
-        print( "depois do dano ",rival)
-        print(pokemon.lista_pokemons_emfrentados)
-        # Dano do pokemon é um número random de 1 a 10 x a sua força
-        # Quando o jogador receber o dano do pokemon ele irá ter
-        # uma perda de xp equivalente ao dano do oponente
-      
+    def perdeu_XP(self):
+        if not self.jogador.pokemon_atual:
+            print('Nenhum pokemon para receber dano!')
+            return False
+        
+        dano = self.rival['Dano'] * randint(1,3)
+        self.jogador.pokemon_atual['Hp'] -= dano
+        print(f"Você recebeu {dano} de dano do {self.rival['Nome']}!")
+        if self.jogador.pokemon_atual['Hp'] <= 0:
+            print(f"{self.jogador.pokemon_atual['Nome']} foi derrotado")
+            return True
+        return False
+    
+    def atacou(self):
+        if not self.jogador.pokemon_atual:
+            print('Nenhum Pokémon para atacar!')
+            return False
+        
+        dano = self.jogador.pokemon_atual['Dano'] * randint(1,3)
+        self.rival['Hp'] -= dano
+        print(f" {self.jogador.pokemon_atual['Nome']} causou {dano} de dano em {self.rival['Nome']}!")
+        
+        if self.rival['Hp'] <=0:
+            print(f"{self.rival['Nome']} foi derrotado!")
+            return True
+        return False
+        
 
-    def Atacou(self):
-            # Dano do jogador é um número random de 1 a 10 x a sua força
-            # Quando o jogador atacar o pokemon
-            # perde xp equivalente ao dano do jogador
-        pass
+    def ganhou(self):
+        if hasattr(self.jogador, 'pokemon_atual'):
+            self.jogador.pokemon_atual['Hp'] = 100 
+            self.jogador.pokemon_atual['Dano'] = self.jogador.pokemon_atual.get('Dano', 0) + 5
+            print("Você ganhou a batalha! Ganhou +20 hP e +5 de Dano.")
+        
 
-    def Ganhou(self):
-            # No final da partida, se o jogador ganhar,
-            # ele sobe 1 nível e ganha +20 xp e 5 de força
-        pass
-
-    def Perdeu(self):
-            # No final, se o jogador perder a partida,
-            # ele só recupera sua vida e mantém a força que já tinha, não sobe de nível
-        pass
+    def perdeu(self):
+        print(f"Fim de jogo")
+       
+            
+    
