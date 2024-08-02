@@ -44,11 +44,9 @@ def Oponente():
     return oponente
 
 def listar_pokemon():
+    print("\t\n Lista de pokemons emfrentados: ")
     for x in lista_pokemons_emfrentados:
         print(
             f"\t\n=========================\n Nome: {x['Nome']}\t\n Tipo: {x['Tipo']}\t\n HP:{x['Hp']}\t\n Dano minimo: {x['Dano']}\t\n=========================\n"
         )
     
-    
-
-listar_pokemon()

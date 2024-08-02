@@ -1,13 +1,14 @@
-from abc import ABC, abstractmethod
-from random import randint, choice
 import pokemon
-import Round
 
 class Jogador: 
-    def __init__(self):
+    def __init__(self, nome):
+        self.nome = nome
+        self.nivel = 1
         self.pokemon_atual = None
         
+        
     def Listar_pokemon_usuario(self):
+        print(f"\nNome do Jogador: {self.nome}\nNível do Jogador: {self.nivel}\n")
         # usuario vai selecionar o pokemon que irar jogar 
         print(" Pokémons disponivéis: ")
         for p in pokemon.Lista_pokemon:
@@ -29,34 +30,4 @@ class Jogador:
                 print(f"Entrada invalida:{e} !!!")
             except StopIteration:
                 print("ID invalido, digite novamente ")
-                
-class Jogo:
-    def __init__(self):
-        self.jogador = Jogador()
-    
-    def iniciar(self):
-        self.jogador.escolher_pokemon()
-        while True:
-            rival = pokemon.Oponente()
-            if not rival:
-                print("Não há mais oponentes disponíveis!")
-                break
-            input(f"\t\n Você está enfrentando: {rival['Nome']}. Pressione Enter para continuar...\n ==================================================")
-            
-            combate = Round.Round(self.jogador, rival)
-            
-            while True:
-                if combate.perdeu_XP():# pokemon do usuario morreu durante o combate 
-                    combate.perdeu()
-                    return
-
-                if combate.atacou():
-                    combate.ganhou()
-                    break
-                
-                if self.jogador.pokemon_atual['Hp'] <= 0:# pokemon do usuario morreu ao final do combate 
-                    combate.perdeu()
-                    return
-               
-jogo = Jogo()
-jogo.iniciar()
+ 

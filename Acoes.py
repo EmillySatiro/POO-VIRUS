@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from random import randint
-import pokemon
 
+import pokemon
 
 class Combate(ABC):
     @abstractmethod
@@ -54,7 +54,7 @@ class Round(Combate):
         self.jogador.pokemon_atual['Hp'] -= dano
         print(f"\t\n Você recebeu {dano} de dano do {self.rival['Nome']}!")
         if self.jogador.pokemon_atual['Hp'] <= 0:
-            print(f"\t\n {self.jogador.pokemon_atual['Nome']} foi derrotado")
+            print(f"\t\n Seu {self.jogador.pokemon_atual['Nome']} foi derrotado")
             return True
         return False
     
@@ -68,7 +68,7 @@ class Round(Combate):
         
         dano = self.jogador.pokemon_atual['Dano'] * randint(1,3)
         self.rival['Hp'] -= dano
-        print(f"\t\n {self.jogador.pokemon_atual['Nome']} causou {dano} de dano em {self.rival['Nome']}!")
+        print(f"\t\n Sua jogada-{self.jogador.pokemon_atual['Nome']} causou {dano} de dano em {self.rival['Nome']}!")
         
         if self.rival['Hp'] <=0:
             print(f"\t\n {self.rival['Nome']} foi derrotado!")
@@ -83,13 +83,16 @@ class Round(Combate):
         if hasattr(self.jogador, 'pokemon_atual'):
             self.jogador.pokemon_atual['Hp'] = 100 
             self.jogador.pokemon_atual['Dano'] = self.jogador.pokemon_atual.get('Dano', 0) + 5
-            print("\t\n Você ganhou a batalha! Ganhou +20 hP e +5 de Dano.\t\n==================================================")
+            self.jogador.nivel +=1
+            print("\t\n Você ganhou a batalha! Ganhou +20 hP e +5 de Dano.")
+            print(f"\t\n Novo Nível do Jogador: {self.jogador.nivel}\t\n==================================================")
         
 
     def perdeu(self):
         '''
         Informa que o Pokémon do jogador foi derrotado e que o jogo terminou
         '''
+        pokemon.listar_pokemon()
         print(f"\t\n Fim de jogo \t\n==================================================")
        
             
