@@ -6,8 +6,7 @@ import pokemon
 class Combate(ABC):
     @abstractmethod
     def perdeu_XP(self, rival):
-        '''
-        Dano do pokemon é um numero random de 1 a 10 x a sua força 
+        ''' 
         Quando o jogador receber o dano do pokemon ele irar ter
         uma perde de xp equivaente a o dano do oponente 
         '''
@@ -44,42 +43,54 @@ class Round(Combate):
         self.rival = rival
         
     def perdeu_XP(self):
+        '''
+        Simula a perda de HP do Pokémon do jogador após receber dano do rival.
+        '''
         if not self.jogador.pokemon_atual:
-            print('Nenhum pokemon para receber dano!')
+            print('\t\n Nenhum pokemon para receber dano!\t\n==================================================')
             return False
         
         dano = self.rival['Dano'] * randint(1,3)
         self.jogador.pokemon_atual['Hp'] -= dano
-        print(f"Você recebeu {dano} de dano do {self.rival['Nome']}!")
+        print(f"\t\n Você recebeu {dano} de dano do {self.rival['Nome']}!")
         if self.jogador.pokemon_atual['Hp'] <= 0:
-            print(f"{self.jogador.pokemon_atual['Nome']} foi derrotado")
+            print(f"\t\n {self.jogador.pokemon_atual['Nome']} foi derrotado")
             return True
         return False
     
     def atacou(self):
+        '''
+        Simula o ataque do Pokémon do jogador ao rival.
+        '''
         if not self.jogador.pokemon_atual:
-            print('Nenhum Pokémon para atacar!')
+            print('\t\n Nenhum Pokémon para atacar!\t\n==================================================')
             return False
         
         dano = self.jogador.pokemon_atual['Dano'] * randint(1,3)
         self.rival['Hp'] -= dano
-        print(f" {self.jogador.pokemon_atual['Nome']} causou {dano} de dano em {self.rival['Nome']}!")
+        print(f"\t\n {self.jogador.pokemon_atual['Nome']} causou {dano} de dano em {self.rival['Nome']}!")
         
         if self.rival['Hp'] <=0:
-            print(f"{self.rival['Nome']} foi derrotado!")
+            print(f"\t\n {self.rival['Nome']} foi derrotado!")
             return True
         return False
         
 
     def ganhou(self):
+        '''
+        Atualiza o estado do Pokémon do jogador após ganhar a batalha.
+        '''
         if hasattr(self.jogador, 'pokemon_atual'):
             self.jogador.pokemon_atual['Hp'] = 100 
             self.jogador.pokemon_atual['Dano'] = self.jogador.pokemon_atual.get('Dano', 0) + 5
-            print("Você ganhou a batalha! Ganhou +20 hP e +5 de Dano.")
+            print("\t\n Você ganhou a batalha! Ganhou +20 hP e +5 de Dano.\t\n==================================================")
         
 
     def perdeu(self):
-        print(f"Fim de jogo")
+        '''
+        Informa que o Pokémon do jogador foi derrotado e que o jogo terminou
+        '''
+        print(f"\t\n Fim de jogo \t\n==================================================")
        
             
     

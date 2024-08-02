@@ -11,7 +11,7 @@ class Jogador:
         # usuario vai selecionar o pokemon que irar jogar 
         print(" Pokémons disponivéis: ")
         for p in pokemon.Lista_pokemon:
-            print(f"\t\n=========================\n ID: {p['ID']}\t\nNome: {p['Nome']}\t\nTipo: {p['Tipo']}\t\nHP: {p['Hp']}\t\nDano mínimo: {p['Dano']}\t\n=========================\n")
+            print(f"\t\n=========================\n ID: {p['ID']}\t\nNome: {p['Nome']}\t\nTipo: {p['Tipo']}\t\nHP: {p['Hp']}\t\nDano mínimo: {p['Dano']}\t\n=========================")
       
     def escolher_pokemon(self):
         self.Listar_pokemon_usuario()
@@ -23,24 +23,13 @@ class Jogador:
                 
                 escolhido = int(escolhido)
                 self.pokemon_atual = next(p for p in pokemon.Lista_pokemon if p["ID"] == escolhido)
-                print(f'Você escolheu: {self.pokemon_atual["Nome"]}')
+                print(f'\t\n==================================================\n Você escolheu: {self.pokemon_atual["Nome"]}')
                 break
             except ValueError as e:
                 print(f"Entrada invalida:{e} !!!")
             except StopIteration:
                 print("ID invalido, digite novamente ")
                 
-    def atacar(self, rival):
-        if not self.pokemon_atual:
-            print('Nenhum pokemon escolhido!')
-            return
-        dano = self.pokemon_atual['Dano'] *randint (1,3)
-        rival['Hp'] -= dano
-        print(f'{self.pokemon_atual["Nome"]} causou {dano} de dano em {rival["Nome"]}!')
-        if rival['Hp']<=0:
-            print(f"{rival['Nome']} Foi derrotado!")
-            return True
-        return False 
 class Jogo:
     def __init__(self):
         self.jogador = Jogador()
@@ -52,7 +41,7 @@ class Jogo:
             if not rival:
                 print("Não há mais oponentes disponíveis!")
                 break
-            input(f"Você está enfrentando: {rival['Nome']}. Pressione Enter para continuar...")
+            input(f"\t\n Você está enfrentando: {rival['Nome']}. Pressione Enter para continuar...\n ==================================================")
             
             combate = Round.Round(self.jogador, rival)
             
