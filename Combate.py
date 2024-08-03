@@ -78,17 +78,17 @@ def menu():
             jogo = Jogo_random()
             jogo.iniciar()
         elif escolha =='2':
-            Jogo_batalha()
+            jogo = Jogo_batalha()
             jogo.iniciar()
         elif escolha == '3':
-            print("SAINDO DO JOGO .....")
+            artesac.tela_fim()
             break
         else:
             print("Opção inválida, tente novamente!")
             
 def Informacoes():
-    print("\n========================================")
-    print("            Instruções Do jogo")
+    print("\n========================================================================================================")
+    print("                                         Instruções Do jogo")
     print("1. Jogar no modo Aleatório: ")
     print("   Neste modo, você enfrentará oponentes aleatórios em uma sequência de batalhas.")
     print("   Cada vez que vencer um oponente, você ganhará pontos de experiência (XP) que são convertidos em dano e HP para o seu Pokémon.")
@@ -99,7 +99,10 @@ def Informacoes():
     print("   - Você pode trocar seu Pokémon durante a batalha se desejar.")
     print("   - O objetivo é derrotar o oponente e, se vencer, você pode trocar seu Pokémon.")
     print("   Cada vez que vencer um oponente, você ganhará pontos de experiência (XP) que são convertidos em dano e HP para o seu Pokémon.")
-    print("\nPressione Enter para voltar ao menu principal.")
+    print("\nPressione Enter para ir ao menu principal.")
     input()
 
-inicio = artesac.tela_test()
+artesac.tela_inicio()
+input()
+Informacoes()
+menu()

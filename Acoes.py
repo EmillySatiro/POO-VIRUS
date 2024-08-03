@@ -98,6 +98,8 @@ class Round_random(Combate):
         '''
         pokemon.listar_pokemon()
         print(f"\t\n Fim de jogo \t\n==================================================")
+        pokemon.limpar_lista()
+        
         return
        
 
@@ -194,6 +196,7 @@ class Round_Combate(Combate):
         '''
         pokemon.listar_pokemon()
         print(f"\t\n Fim de jogo \t\n==================================================")
+        pokemon.limpar_lista()
         return
        
 

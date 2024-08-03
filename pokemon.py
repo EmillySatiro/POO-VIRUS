@@ -66,4 +66,8 @@ def listar_pokemon():
     print("\t\n Lista de pokemons emfrentados: ")
     for x in lista_pokemons_emfrentados:
         imprimir_cartas(x)
+
+def limpar_lista():
+    lista_pokemons_emfrentados.clear()
+    
     
