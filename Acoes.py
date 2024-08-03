@@ -81,11 +81,12 @@ class Round_random(Combate):
         '''
         Atualiza o estado do Pokémon do jogador após ganhar a batalha.
         '''
-        if hasattr(self.jogador, 'pokemon_atual'):
-            self.jogador.pokemon_atual['Dano'] += 5
+        if hasattr(self.jogador, 'pokemon_atual') and self.jogador.pokemon_atual:
+            bonus_dano = randint(3,7)
+            self.jogador.pokemon_atual['Dano'] += bonus_dano
             self.jogador.nivel += 1
-            self.jogador.pokemon_atual['Hp'] = 100 + (20 *self.jogador.nivel)
-            print("\t\n Você ganhou a batalha! Ganhou +20 hP e +5 de Dano.")
+            self.jogador.pokemon_atual['Hp'] = min(100 + (20 *self.jogador.nivel),600)
+            print(f"\t\n Você ganhou a batalha! Ganhou {bonus_dano} de Dano.")
             print(f"\t\n Novo Nível do Jogador: {self.jogador.nivel}\t\n A vida do seu pokémon : {self.jogador.pokemon_atual['Hp']} \t\n O dano Minimo : {self.jogador.pokemon_atual['Dano']} \t\n==================================================")
 
             return
@@ -131,7 +132,7 @@ class Round_Combate(Combate):
             print('\t\n Nenhum Pokémon para atacar!\t\n==================================================')
             return False
         
-        dano = self.jogador.pokemon_atual['Dano'] * randint(1,3)
+        dano = self.jogador.pokemon_atual['Dano'] * 3
         self.rival['Hp'] -= dano
         print(f"\t\n Sua jogada-{self.jogador.pokemon_atual['Nome']} causou {dano} de dano em {self.rival['Nome']}!")
         
@@ -175,7 +176,7 @@ class Round_Combate(Combate):
         if hasattr(self.jogador, 'pokemon_atual') and self.jogador.pokemon_atual:
             self.jogador.pokemon_atual['Dano'] += 5
             self.jogador.nivel += 1
-            self.jogador.pokemon_atual['Hp'] = min(100 + (20 *self.jogador.nivel), 300)
+            self.jogador.pokemon_atual['Hp'] = min(100 + (20 *self.jogador.nivel), 800)
             print("\t\n Você ganhou a batalha! Ganhou +20 hP e +5 de Dano.")
             print(f"\t\n Novo Nível do Jogador: {self.jogador.nivel}\t\n A vida do seu pokémon : {self.jogador.pokemon_atual['Hp']} \t\n O dano Minimo : {self.jogador.pokemon_atual['Dano']} \t\n==================================================")
             

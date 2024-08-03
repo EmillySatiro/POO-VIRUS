@@ -8,11 +8,12 @@ class Jogador:
         
         
     def Listar_pokemon_usuario(self):
+
         print(f"\nNome do Jogador: {self.nome}\nNível do Jogador: {self.nivel}\n")
         # usuario vai selecionar o pokemon que irar jogar 
         print(" Pokémons disponivéis: ")
         for p in pokemon.Lista_pokemon:
-            print(f"\t\n=========================\n ID: {p['ID']}\t\nNome: {p['Nome']}\t\nTipo: {p['Tipo']}\t\nHP: {p['Hp']}\t\nDano mínimo: {p['Dano']}\t\n=========================")
+            pokemon.imprimir_cartas(p)
       
     def escolher_pokemon(self):
         self.Listar_pokemon_usuario()
