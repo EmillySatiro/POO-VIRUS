@@ -3,7 +3,7 @@ import pokemon
 class Jogador: 
     def __init__(self, nome):
         self.nome = nome
-        self.nivel = 1
+        self.nivel = 0
         self.pokemon_atual = None
         
         
@@ -27,7 +27,8 @@ class Jogador:
                 print(f'\t\n==================================================\n Você escolheu: {self.pokemon_atual["Nome"]}')
                 break
             except ValueError as e:
-                print(f"Entrada invalida:{e} !!!")
+                print(f"Entrada invalida {e} !!!")
             except StopIteration:
                 print("ID invalido, digite novamente ")
+        return
  
