@@ -16,11 +16,18 @@ class Itemcardapio(Produto):
         self._descricao= descricao
         self._preco = preco
         
-    def get_preco(self):
-        return self._preco
-    
     def get_descricao(self):
         return self._descricao
+    
+    def get_preco(self):
+        return self._preco
+
+    def set_descricao(self, descricao):
+        self._descricao = descricao
+
+    def set_preco(self, preco):
+        self._preco = preco
+
 
 class Pedido:
     STATUS_EM_PROCESSAMENTO = "Em pocessamento "
@@ -82,3 +89,14 @@ class Pedido:
                 f"Status : {self._status}\n"
                 f"============================")
         print(nota)
+        
+    def get_nome_cliente(self):
+        return self._nome_cliente 
+    
+    def get_cpf_cliente(self):
+        return self._cpf_cliente
+    
+    def get_itens(self):
+        return self._itens
+    
+    
