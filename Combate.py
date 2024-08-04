@@ -28,8 +28,9 @@ class Jogo_random:
                 if combate.atacou():
                     combate.ganhou()
                     break
-                
-                if self.jogador.pokemon_atual['Hp'] <= 0:# pokemon do usuario morreu ao final do combate 
+                pokemon_atual = self.jogador.get_pokemon_atual()
+                if pokemon_atual and pokemon_atual['Hp'] <= 0:# pokemon do usuario morreu ao final do combate 
+                    pokemon_atual['Hp'] = 300
                     combate.perdeu()
                     return
 class Jogo_batalha:
@@ -58,7 +59,9 @@ class Jogo_batalha:
                     combate.ganhou()
                     break
                 
-                if self.jogador.pokemon_atual['Hp'] <= 0:# pokemon do usuario morreu ao final do combate 
+                pokemon_atual= self.jogador.get_pokemon_atual()
+                if pokemon_atual and pokemon_atual['Hp'] <= 0:# pokemon do usuario morreu ao final do combate 
+                    pokemon_atual['Hp'] = 300
                     combate.perdeu()
                     return
                 
