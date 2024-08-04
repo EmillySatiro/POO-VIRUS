@@ -5,7 +5,7 @@ class Jogador:
         self.__nome = nome
         self.__nivel = 0
         self.__pokemon_atual = None
-        self.__pokemon_list = [] 
+        self.__pokemon_list = [] #add pokemom aqui 
         self.__patente = 'Novato'
 
     #metodos para acessar atributos privados, se necessario 
@@ -14,7 +14,6 @@ class Jogador:
     
     def get_nivel(self):
         return self.__nivel
-    
     
     def get_pokemon_atual(self):
         return self.__pokemon_atual

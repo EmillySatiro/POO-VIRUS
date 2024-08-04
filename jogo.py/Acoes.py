@@ -52,7 +52,7 @@ class Round_random(Combate):
             print('\t\n Nenhum pokemon para receber dano!\t\n==================================================')
             return False
 
-        dano = self.rival['Dano'] * randint(1,3)
+        dano = self.rival['Dano'] * randint(1,4)
         pokemon_atual['Hp'] -= dano
         print(f"\t\n Você recebeu {dano} de dano do {self.rival['Nome']}!")
         
@@ -75,6 +75,7 @@ class Round_random(Combate):
         print(f"\t\n Sua jogada-{pokemon_atual['Nome']} causou {dano} de dano em {self.rival['Nome']}!")
         
         if self.rival['Hp'] <=0:
+            self.rival['Hp'] = 300
             print(f"\t\n {self.rival['Nome']} foi derrotado!")
             return True
         return False
@@ -89,7 +90,7 @@ class Round_random(Combate):
             bonus_dano = randint(3,7)
             pokemon_atual['Dano'] += bonus_dano
             self.jogador.set_nivel(self.jogador.get_nivel() + 1)  # Atualiza o nível usando o método setter
-            pokemon_atual['Hp'] = min(300 + (20 * self.jogador.get_nivel()), 600)
+            pokemon_atual['Hp'] = min(300 + (5 * self.jogador.get_nivel()), 600)
             print("\t\n==================================================")
             print(f"\t\nVocê ganhou a batalha! Ganhou {bonus_dano} de Dano.")
             print(f"\t\nNovo Nível do Jogador: {self.jogador.get_nivel()}\t\nA vida do seu Pokémon: {pokemon_atual['Hp']} \t\nO dano Mínimo: {pokemon_atual['Dano']} ")
@@ -103,6 +104,8 @@ class Round_random(Combate):
         '''
         Informa que o Pokémon do jogador foi derrotado e que o jogo terminou
         '''
+        pokemon_atual = self.jogador.get_pokemon_atual()
+        pokemon_atual['Hp'] = 300
         pokemon.listar_pokemon()
         print(f"\t\n Fim de jogo \t\n==================================================")
         pokemon.limpar_lista()
@@ -148,6 +151,7 @@ class Round_Combate(Combate):
         print(f"\t\n Sua jogada-{pokemon_atual['Nome']} causou {dano} de dano em {self.rival['Nome']}!")
         
         if self.rival['Hp'] <=0:
+            self.rival['Hp'] = 300
             print(f"\t\n {self.rival['Nome']} foi derrotado!")
             return True
         return False
@@ -189,7 +193,7 @@ class Round_Combate(Combate):
             pokemon_atual['Dano'] += 5
             novo_nivel = self.jogador.get_nivel() + 1
             self.jogador.set_nivel(novo_nivel)
-            pokemon_atual['Hp'] = min(300 + (20 *novo_nivel), 800)
+            pokemon_atual['Hp'] = min(300 + (5 *novo_nivel), 800)
             print("\t\n==================================================")
             print("\t\n Você ganhou a batalha! Ganhou +20 hP e +5 de Dano.")
             print(f"\t\n Novo Nível do Jogador: {self.jogador.get_nivel()}\t\n A vida do seu pokémon : {pokemon_atual['Hp']} \t\n O dano Minimo : {pokemon_atual['Dano']} ")
@@ -207,6 +211,8 @@ class Round_Combate(Combate):
         '''
         Informa que o Pokémon do jogador foi derrotado e que o jogo terminou
         '''
+        pokemon_atual = self.jogador.get_pokemon_atual()
+        pokemon_atual['Hp'] = 300
         pokemon.listar_pokemon()
         print(f"\t\n Fim de jogo \t\n==================================================")
         pokemon.limpar_lista()

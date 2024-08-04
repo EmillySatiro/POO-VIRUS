@@ -21,7 +21,7 @@ class Jogo_random:
             combate = Acoes.Round_random(self.jogador, rival)
             
             while True:
-                if combate.perdeu_XP():# pokemon do usuario morreu durante o combate 
+                if combate.perdeu_XP(): # pokemon do usuario morreu durante o combate 
                     combate.perdeu()
                     return
 
@@ -37,7 +37,8 @@ class Jogo_batalha:
     def __init__(self):
         nome = input(" Digite seu nome: ").strip()
         self.jogador = Jogador.Jogador(nome)
-    
+        
+    print("\n========================================")
     def iniciar(self):
         self.jogador.escolher_pokemon()
         while True:
@@ -64,6 +65,7 @@ class Jogo_batalha:
                     pokemon_atual['Hp'] = 300
                     combate.perdeu()
                     return
+    print("\n========================================")
                 
 def menu():
     while True:
@@ -85,6 +87,7 @@ def menu():
             jogo.iniciar()
         elif escolha == '3':
             artesac.tela_fim()
+            #print de nome, nivel, patente 
             break
         else:
             print("Opção inválida, tente novamente!")

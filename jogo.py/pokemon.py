@@ -27,7 +27,7 @@ Lista_pokemon = [
     {"ID": 24,"Nome": " Gengar", "Tipo": "Ghost, poison","Hp":300,"Dano":35},
     {"ID": 25,"Nome": " Onix", "Tipo": "Rock, Ground","Hp":300,"Dano":25},
     {"ID": 26,"Nome": " Snorlax", "Tipo": "Normal","Hp":300,"Dano":30 },
-    {"ID": 27,"Nome": " Mewtwo", "Tipo": "Psíquico","Hp":300,"Dano":50},
+    {"ID": 27,"Nome": " Mewtwo", "Tipo": "Psíquico","Hp":300,"Dano":45},
     {"ID": 28,"Nome": " Noctowl", "Tipo": "Normal, Flying","Hp":300,"Dano":28 },
     {"ID": 29,"Nome": " Espeon", "Tipo": "Psíquico","Hp":300,"Dano":35},
     {"ID": 30,"Nome": " Sneasel", "Tipo": "Ice","Hp":300,"Dano":30},
